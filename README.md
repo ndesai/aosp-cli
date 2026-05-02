@@ -23,19 +23,20 @@ A lightweight, extensible command-line interface for the Android Debug Bridge (A
 ```bash
 git clone https://github.com/ndesai/aosp-cli.git
 cd aosp-cli
-chmod +x aosp_cli.py
+# Add the current directory to your $PATH
+export PATH="$PATH:$(pwd)"
 ```
 
 ## Usage
 
 ### Basic Commands
 
-Execute any command defined in the registry by its key:
+Execute any command defined in the registry using the `aosp` binary:
 
 ```bash
-./aosp_cli.py screenshot     # Captures all displays with activity-based naming
-./aosp_cli.py dark           # Enables system-wide dark mode
-./aosp_cli.py no-anim        # Disables all window and transition animations
+aosp screenshot     # Captures all displays with activity-based naming
+aosp dark           # Enables system-wide dark mode
+aosp no-anim        # Disables all window and transition animations
 ```
 
 ### Search
@@ -43,7 +44,7 @@ Execute any command defined in the registry by its key:
 Query the registry for specific utilities:
 
 ```bash
-./aosp_cli.py search automotive
+aosp search automotive
 ```
 
 ## Configuration
