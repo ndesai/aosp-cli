@@ -39,6 +39,27 @@ force-stop:
   description: Force stop app
   tags:
   - app
+gear-drive:
+  command: cmd car_service set-property 289408000 0 8
+  description: Set vehicle gear to DRIVE
+  tags:
+  - automotive
+  - aaos
+  - vhal
+gear-park:
+  command: cmd car_service set-property 289408000 0 4
+  description: Set vehicle gear to PARK
+  tags:
+  - automotive
+  - aaos
+  - vhal
+hvac-temp:
+  command: cmd car_service set-property 358614275 1 {args}
+  description: 'Set HVAC temperature for Driver (ID: 358614275, Zone: 1)'
+  tags:
+  - automotive
+  - aaos
+  - climate
 ip:
   command: ip addr show wlan0
   description: Show device IP
