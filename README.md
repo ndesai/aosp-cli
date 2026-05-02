@@ -57,15 +57,41 @@ By default, the tool looks for profiles in the same directory or at a configured
 ./aosp_cli.py profile demo
 ```
 
-## Command Reference (Highlights)
+## Full Command Reference
 
-| Command | Category | Description |
+The registry currently supports the following commands:
+
+| Command | Tags | Description |
 | :--- | :--- | :--- |
-| `screenshot` | Capture | Captures UI and pulls to local directory |
-| `layout-on` | Debug | Toggles layout bounds for UI inspection |
-| `font-size` | Access | Adjusts system font scale (e.g., `font-size 1.2`) |
-| `remount` | Root | Automatically handles `adb root && adb remount` |
-| `link` | Intent | Triggers deep links (e.g., `link "https://example.com"`) |
+| `anim-on` | `ui` | Enable animations |
+| `bootloader` | `flashing` | Reboot to bootloader |
+| `clear` | `app` | Clear app data |
+| `clock-off` | `time` | Hide seconds in clock |
+| `clock-on` | `time` | Show seconds in clock |
+| `dark` | `theme` | Enable dark mode |
+| `font-size` | `accessibility` | Set font scale |
+| `force-stop` | `app` | Force stop app |
+| `ip` | `network` | Show device IP |
+| `key-back` | `input` | Back button |
+| `key-home` | `input` | Home button |
+| `layout-off` | `ui` | Hide layout bounds |
+| `layout-on` | `debug` | Show layout bounds |
+| `light` | `theme` | Enable light mode |
+| `link` | `intent` | Open deep link |
+| `log-clear` | `debug` | Clear logcat |
+| `log-crash` | `debug` | Show only errors |
+| `no-anim` | `speed` | Disable animations |
+| `pointer-off` | `input` | Hide touch coordinates |
+| `pointer-on` | `debug` | Show touch coordinates |
+| `reboot` | `power` | Normal reboot |
+| `record` | `video`, `record` | Record screen (CTRL+C to stop) and pull file |
+| `remount` | `root` | Root and remount system |
+| `screenshot` | `image`, `capture` | Capture screen, pull file, and cleanup |
+| `sleep-normal` | `power` | Default sleep behavior |
+| `stay-awake` | `power` | Keep screen on while charging |
+| `taps-off` | `touches` | Hide touch feedback |
+| `taps-on` | `touches` | Show touch feedback |
+| `uninstall` | `app` | Uninstall app |
 
 ---
 
