@@ -1,0 +1,150 @@
+anim-on:
+  command: settings put global window_animation_scale 1 && settings put global transition_animation_scale
+    1 && settings put global animator_duration_scale 1
+  description: Enable animations
+  tags:
+  - ui
+bootloader:
+  command: reboot bootloader
+  description: Reboot to bootloader
+  tags:
+  - flashing
+clear:
+  command: pm clear {args}
+  description: Clear app data
+  tags:
+  - app
+clock-off:
+  command: settings put secure clock_seconds 0
+  description: Hide seconds in clock
+  tags:
+  - time
+clock-on:
+  command: settings put secure clock_seconds 1
+  description: Show seconds in clock
+  tags:
+  - time
+dark:
+  command: settings put secure ui_night_mode 2 && am broadcast -a android.intent.action.CONFIGURATION_CHANGED
+  description: Enable dark mode
+  tags:
+  - theme
+font-size:
+  command: settings put system font_scale {args}
+  description: Set font scale
+  tags:
+  - accessibility
+force-stop:
+  command: am force-stop {args}
+  description: Force stop app
+  tags:
+  - app
+ip:
+  command: ip addr show wlan0
+  description: Show device IP
+  tags:
+  - network
+key-back:
+  command: input keyevent 4
+  description: Back button
+  tags:
+  - input
+key-home:
+  command: input keyevent 3
+  description: Home button
+  tags:
+  - input
+layout-off:
+  command: setprop debug.layout false && service call activity 51
+  description: Hide layout bounds
+  tags:
+  - ui
+layout-on:
+  command: setprop debug.layout true && service call activity 51
+  description: Show layout bounds
+  tags:
+  - debug
+light:
+  command: settings put secure ui_night_mode 1 && am broadcast -a android.intent.action.CONFIGURATION_CHANGED
+  description: Enable light mode
+  tags:
+  - theme
+link:
+  command: am start -a android.intent.action.VIEW -d {args}
+  description: Open deep link
+  tags:
+  - intent
+log-clear:
+  command: logcat -c
+  description: Clear logcat
+  tags:
+  - debug
+log-crash:
+  command: logcat *:E
+  description: Show only errors
+  tags:
+  - debug
+no-anim:
+  command: settings put global window_animation_scale 0 && settings put global transition_animation_scale
+    0 && settings put global animator_duration_scale 0
+  description: Disable animations
+  tags:
+  - speed
+pointer-off:
+  command: settings put system pointer_location 0
+  description: Hide touch coordinates
+  tags:
+  - input
+pointer-on:
+  command: settings put system pointer_location 1
+  description: Show touch coordinates
+  tags:
+  - debug
+reboot:
+  command: reboot
+  description: Normal reboot
+  tags:
+  - power
+record:
+  command: screenrecord /sdcard/v.mp4
+  description: Record screen (CTRL+C to stop) and pull file
+  tags:
+  - video
+  - record
+remount:
+  command: adb root && adb remount
+  description: Root and remount system
+  tags:
+  - root
+screenshot:
+  command: screencap -p /sdcard/s.png && adb pull /sdcard/s.png . && adb shell rm
+    /sdcard/s.png
+  description: Capture screen, pull file, and cleanup
+  tags:
+  - image
+  - capture
+sleep-normal:
+  command: settings put global stay_on_while_plugged_in 0
+  description: Default sleep behavior
+  tags:
+  - power
+stay-awake:
+  command: settings put global stay_on_while_plugged_in 3
+  description: Keep screen on while charging
+  tags:
+  - power
+taps-off:
+  command: settings put system show_touches 0
+  description: Hide touch feedback
+  tags:
+  - touches
+taps-on:
+  command: settings put system show_touches 1
+  description: Show touch feedback
+  tags:
+  - touches
+uninstall:
+  command: pm uninstall {args}
+  description: Uninstall app
+  tags:
+  - app
