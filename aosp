@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+import os
+import sys
+
+# Get the directory where this executable lives
+bin_dir = os.path.dirname(os.path.realpath(__file__))
+# Path to the actual script
+cli_script = os.path.join(bin_dir, "aosp_cli.py")
+
+if not os.path.exists(cli_script):
+    print(f"Error: Internal component not found at {cli_script}")
+    sys.exit(1)
+
+# Forward all arguments to aosp_cli.py
+os.execv(sys.executable, [sys.executable, cli_script] + sys.argv[1:])
