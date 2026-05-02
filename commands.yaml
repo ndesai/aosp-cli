@@ -138,12 +138,12 @@ remount:
   tags:
   - root
 screenshot:
-  command: screencap -p /sdcard/s.png && adb pull /sdcard/s.png . && adb shell rm
-    /sdcard/s.png
-  description: Capture screen, pull file, and cleanup
+  command: python3 {bin_dir}/capture_all.py
+  description: Capture screenshots from all connected displays with activity naming
   tags:
   - image
   - capture
+  - multi-display
 sleep-normal:
   command: settings put global stay_on_while_plugged_in 0
   description: Default sleep behavior

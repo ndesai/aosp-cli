@@ -25,7 +25,7 @@ class AOSPTool:
             if not silent: print(f"[-] Command '{key}' not found.")
             return False
         
-        full_command = entry['command'].format(args=args_val)
+        full_command = entry['command'].format(args=args_val, bin_dir=os.path.dirname(__file__))
         # Split by && but respect the sequence. 
         # Commands starting with 'adb ' are kept as is, others are prefixed with 'adb shell'
         for step in full_command.split("&&"):
