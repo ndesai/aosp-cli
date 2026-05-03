@@ -76,16 +76,18 @@ Run a profile using:
 
 ## Full Command Reference
 
+See [commands.yaml](commands.yaml) for a full list of commands, here are some examples:
+
 | Command | Tags | Description |
 | :--- | :--- | :--- |
 | `anim-on` | `ui` | Enable animations |
 | `bootloader` | `flashing` | Reboot to bootloader |
-| `clear` | `app` | Clear app data |
+| `clear` | `app` | Clear app data, includes fuzzy package name completion |
 | `clock-off` | `time` | Hide seconds in clock |
 | `clock-on` | `time` | Show seconds in clock |
 | `dark` | `theme` | Enable dark mode |
 | `font-size` | `accessibility` | Set font scale |
-| `force-stop` | `app` | Force stop app |
+| `force-stop` | `app` | Force stop app, includes fuzzy package name completion |
 | `gear-drive` | `automotive`, `aaos`, `vhal` | Set vehicle gear to DRIVE |
 | `gear-park` | `automotive`, `aaos`, `vhal` | Set vehicle gear to PARK |
 | `hvac-temp` | `automotive`, `aaos`, `climate` | Set HVAC temperature for Driver |
@@ -109,7 +111,7 @@ Run a profile using:
 | `stay-awake` | `power` | Keep screen on while charging |
 | `taps-off` | `touches` | Hide touch feedback |
 | `taps-on` | `touches` | Show touch feedback |
-| `uninstall` | `app` | Uninstall app |
+| `uninstall` | `app` | Uninstall app, includes fuzzy package name completion |
 
 ## Development
 
