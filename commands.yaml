@@ -128,7 +128,7 @@ reboot:
   - power
 record:
   command: screenrecord /sdcard/v.mp4
-  description: Record screen (CTRL+C to stop) and pull file
+  description: Record screen and pull file locally (CTRL+C to stop)
   tags:
   - video
   - record

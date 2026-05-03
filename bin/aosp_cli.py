@@ -2,6 +2,7 @@
 import argparse
 import subprocess
 import os
+import time
 import yaml
 
 try:
@@ -64,6 +65,10 @@ class AOSPTool:
             if not silent:
                 print(f"[-] Command '{key}' not found.")
             return False
+
+        # Special handler for recording
+        if key == "record":
+            return self.record_flow(args_val)
 
         # Fuzzy package resolution for app-tagged commands
         if "app" in entry.get("tags", []) and args_val and not args_val.startswith("-"):
@@ -190,6 +195,43 @@ class AOSPTool:
             print("\n[-] Cancelled.")
 
         return None
+    def record_flow(self, local_filename):
+        """
+        Special handler for screen recording that pulls the file locally.
+        """
+        local_filename = local_filename or "recording.mp4"
+        if not local_filename.endswith(".mp4"):
+            local_filename += ".mp4"
+
+        remote_path = "/sdcard/aosp_record_temp.mp4"
+        cmd = ["adb", "shell", "screenrecord", remote_path]
+
+        print(f"[!] Starting screenrecord on device...")
+        print(f"[!] Target local file: {local_filename}")
+        print("[!] Press CTRL+C to stop recording.")
+
+        try:
+            # We don't capture output here so user can see adb errors if any
+            subprocess.run(cmd)
+        except KeyboardInterrupt:
+            # CTRL+C was pressed. screenrecord on device will receive SIGINT and stop.
+            print("\n[!] Stopping recording...")
+
+        # Add a small delay to ensure the file is flushed on the device
+        time.sleep(1)
+
+        print(f"[>] Pulling recording from device...")
+        pull_res = subprocess.run(
+            ["adb", "pull", remote_path, local_filename], capture_output=True
+        )
+
+        if pull_res.returncode == 0:
+            print(f"[+] Successfully saved recording to: {local_filename}")
+            subprocess.run(["adb", "shell", "rm", remote_path], capture_output=True)
+        else:
+            print(f"[-] Failed to pull recording: {pull_res.stderr.decode().strip()}")
+
+        return True
 
 
 def main():
