@@ -34,6 +34,8 @@ class AOSPTool:
             
             if step.startswith("adb "):
                 cmd = step.split(" ")
+            elif step.startswith("python3 "):
+                cmd = step.split(" ")
             else:
                 cmd = ["adb", "shell"] + step.split(" ")
             
