@@ -40,19 +40,19 @@ force-stop:
   tags:
   - app
 gear-drive:
-  command: cmd car_service set-property-value 289408000 0 8
-  description: Set vehicle gear to DRIVE
+  command: cmd car_service emulate-driving-state drive
+  description: Emulate vehicle gear shift to DRIVE
   tags:
   - automotive
   - aaos
-  - vhal
+  - emulation
 gear-park:
-  command: cmd car_service set-property-value 289408000 0 4
-  description: Set vehicle gear to PARK
+  command: cmd car_service emulate-driving-state park
+  description: Emulate vehicle gear shift to PARK
   tags:
   - automotive
   - aaos
-  - vhal
+  - emulation
 hvac-temp:
   command: cmd car_service set-property-value 358614275 1 {args}
   description: 'Set HVAC temperature for Driver (ID: 358614275, Zone: 1)'
