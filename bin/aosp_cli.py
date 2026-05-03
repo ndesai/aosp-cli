@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 import subprocess
-import json
 import os
 import yaml
 
@@ -46,7 +45,7 @@ def package_completer(prefix, **kwargs):
 
 
 class AOSPTool:
-    CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "profiles.json")
+    CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "profiles.yaml")
     REGISTRY_PATH = os.path.join(os.path.dirname(__file__), "..", "commands.yaml")
 
     def __init__(self):
@@ -84,11 +83,11 @@ class AOSPTool:
                 continue
 
             if step.startswith("adb "):
-                cmd = step.split(" ")
+                cmd = step.split()
             elif step.startswith("python3 "):
-                cmd = step.split(" ")
+                cmd = step.split()
             else:
-                cmd = ["adb", "shell"] + step.split(" ")
+                cmd = ["adb", "shell"] + step.split()
 
             if not silent:
                 print(f"[>] {' '.join(cmd)}")
@@ -99,7 +98,7 @@ class AOSPTool:
         if not os.path.exists(self.CONFIG_PATH):
             return {}
         with open(self.CONFIG_PATH, "r") as f:
-            return json.load(f)
+            return yaml.safe_load(f)
 
     def run_profile(self, name):
         profiles = self.load_profiles()

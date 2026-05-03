@@ -1,0 +1,23 @@
+dev:
+  description: High-performance development environment
+  commands:
+  - no-anim
+  - stay-awake
+  - taps-on
+  - clock-on
+qa:
+  description: Standard testing environment with bounds and layout info
+  commands:
+  - layout-on
+  - pointer-on
+  - dark
+  - log-clear
+vanilla:
+  description: Restore device to factory-like presentation
+  commands:
+  - anim-on
+  - layout-off
+  - pointer-off
+  - taps-off
+  - clock-off
+  - sleep-normal
