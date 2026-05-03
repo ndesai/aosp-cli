@@ -62,6 +62,9 @@ class AOSPTool:
         print("[+] Profile applied successfully.")
 
     def search(self, query):
+        """
+        Search for commands matching a query in keys, descriptions, or tags.
+        """
         print(f"\n[?] Searching for: '{query}'\n")
         q = query.lower()
         for key, data in self.registry.items():
@@ -71,6 +74,26 @@ class AOSPTool:
                 print(f"  \033[1m{key:15}\033[0m - {desc}")
         print()
 
+    def teach(self, key, args_val=""):
+        """
+        Display the underlying command for a shorthand.
+        
+        Args:
+            key (str): The shorthand command key.
+            args_val (str): Optional arguments for the command.
+        """
+        entry = self.registry.get(key)
+        if not entry:
+            print(f"[-] Command '{key}' not found.")
+            return
+        
+        # Replace placeholders like {args} and {bin_dir}
+        full_command = entry['command'].format(
+            args=args_val,
+            bin_dir=os.path.dirname(__file__)
+        )
+        print(full_command)
+
 def main():
     tool = AOSPTool()
     parser = argparse.ArgumentParser(description="AOSP CLI: A tool to streamline Android OS testing and debugging")
@@ -79,6 +102,10 @@ def main():
     subparsers.add_parser("search", help="Search commands").add_argument("query")
     subparsers.add_parser("profile", help="Run a profile").add_argument("name")
     subparsers.add_parser("list-profiles", help="List available profiles")
+    
+    teach_parser = subparsers.add_parser("teach", help="Show the exact command that a shorthand executes")
+    teach_parser.add_argument("name", help="The shorthand command to learn about")
+    teach_parser.add_argument("extra_args", nargs="*", help="Optional arguments for the shorthand")
 
     # Commands that require arguments
     needs_args = ["record", "font-size", "battery-level", "link", "clear", "force-stop", "uninstall"]
@@ -101,6 +128,8 @@ def main():
         profiles = tool.load_profiles()
         for name, data in profiles.items():
             print(f"  \033[1m{name:10}\033[0m - {data.get('description')}")
+    elif args.cmd == "teach":
+        tool.teach(args.name, " ".join(args.extra_args))
     else:
         tool.execute(args.cmd, getattr(args, "args", ""))
 
