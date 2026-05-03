@@ -3,9 +3,9 @@ import os
 import sys
 
 # Get the directory where this executable lives
-bin_dir = os.path.dirname(os.path.realpath(__file__))
+current_dir = os.path.dirname(os.path.realpath(__file__))
 # Path to the actual script
-cli_script = os.path.join(bin_dir, "aosp_cli.py")
+cli_script = os.path.join(current_dir, "bin", "aosp_cli.py")
 
 if not os.path.exists(cli_script):
     print(f"Error: Internal component not found at {cli_script}")

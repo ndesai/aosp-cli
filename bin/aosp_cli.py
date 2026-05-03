@@ -6,8 +6,8 @@ import os
 import yaml
 
 class AOSPTool:
-    CONFIG_PATH = os.path.join(os.path.dirname(__file__), "profiles.json")
-    REGISTRY_PATH = os.path.join(os.path.dirname(__file__), "commands.yaml")
+    CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "profiles.json")
+    REGISTRY_PATH = os.path.join(os.path.dirname(__file__), "..", "commands.yaml")
     
     def __init__(self):
         self.registry = self.load_registry()
@@ -73,7 +73,7 @@ class AOSPTool:
 
 def main():
     tool = AOSPTool()
-    parser = argparse.ArgumentParser(description="AOSP-CLI: Lightweight. Extensible. Iconic.")
+    parser = argparse.ArgumentParser(description="AOSP CLI: A tool to streamline Android OS testing and debugging")
     subparsers = parser.add_subparsers(dest="cmd")
 
     subparsers.add_parser("search", help="Search commands").add_argument("query")
