@@ -1,23 +1,34 @@
+# AOSP CLI Profiles Configuration
+# This file defines named profiles that group multiple AOSP CLI commands together.
+# Each profile can be applied to a device to quickly configure it for specific use cases.
+#
+# Structure:
+# <profile_name>:
+#   description: A short summary of what the profile does.
+#   commands:
+#     - <command_name_1>
+#     - <command_name_2>
+
 dev:
   description: High-performance development environment
   commands:
-  - no-anim
-  - stay-awake
-  - taps-on
-  - clock-on
+    - no-anim
+    - stay-awake
+    - taps-on
+    - clock-on
 qa:
   description: Standard testing environment with bounds and layout info
   commands:
-  - layout-on
-  - pointer-on
-  - dark
-  - log-clear
+    - layout-on
+    - pointer-on
+    - dark
+    - log-clear
 vanilla:
   description: Restore device to factory-like presentation
   commands:
-  - anim-on
-  - layout-off
-  - pointer-off
-  - taps-off
-  - clock-off
-  - sleep-normal
+    - anim-on
+    - layout-off
+    - pointer-off
+    - taps-off
+    - clock-off
+    - sleep-normal

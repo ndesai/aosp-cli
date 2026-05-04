@@ -25,7 +25,7 @@ def check_alphabetical_order():
     # We look for lines that are not indented and end with a colon.
     original_keys = []
     for line in lines:
-        if line and not line.startswith(" ") and ":" in line:
+        if line and not line.startswith(" ") and not line.startswith("#") and ":" in line:
             # Clean up the key by removing the colon and any quotes.
             key = line.split(":")[0].strip().strip('"').strip("'")
             if key:
