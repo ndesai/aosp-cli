@@ -30,12 +30,12 @@ def get_connectivity_status():
 
         # Connectivity / Active Network
         conn_out = subprocess.check_output(["adb", "shell", "dumpsys", "connectivity"]).decode()
-        # Look for the default network
         default_net = re.search(r"Default network: (\d+)", conn_out)
         if default_net:
             net_id = default_net.group(1)
-            # Find the transport for this network ID
-            net_info = re.search(fr"NetworkAgentInfo\{{network\{{{net_id\}}}.*?ni\{{(.*?)\}}", conn_out, re.DOTALL)
+            # Using raw strings to avoid f-string backslash restrictions in Python < 3.12
+            pattern = r"NetworkAgentInfo\{network\{" + net_id + r"\}.*?ni\{(.*?)\}"
+            net_info = re.search(pattern, conn_out, re.DOTALL)
             if net_info:
                 status["active_transport"] = net_info.group(1)
         
