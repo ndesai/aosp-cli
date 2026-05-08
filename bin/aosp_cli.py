@@ -266,6 +266,8 @@ def main():
     ]
 
     for key in tool.registry.keys():
+        if key in ["search", "profile", "list-profiles", "teach"]:
+            continue
         sp = subparsers.add_parser(key)
         if "{args}" in tool.registry[key].get("command", "") or key in needs_args:
             arg = sp.add_argument("args", nargs="?", default="")
