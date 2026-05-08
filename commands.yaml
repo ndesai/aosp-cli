@@ -111,6 +111,13 @@ no-anim:
   description: Disable animations
   tags:
   - speed
+notifs:
+  command: python3 {bin_dir}/notif_monitor.py
+  description: Real-time monitor for incoming notifications
+  tags:
+  - notifications
+  - debug
+  - monitor
 pointer-off:
   command: settings put system pointer_location 0
   description: Hide touch coordinates
