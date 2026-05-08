@@ -1,190 +1,184 @@
-# AOSP CLI Commands Configuration
-# This file defines the individual commands available in the AOSP CLI.
-# Each command specifies its behavior, description, and tags for categorization.
-#
-# Structure:
-# <command_name>:
-#   command: The shell command to execute. Use {args} for positional arguments,
-#            and {bin_dir} for the path to the CLI's binary directory.
-#   description: A short summary of what the command does.
-#   tags:
-#     - <tag_1>
-#     - <tag_2>
-#
-# Note: Commands should be kept in alphabetical order (enforced by lint).
-
 anim-on:
-  command: settings put global window_animation_scale 1 && settings put global
-    transition_animation_scale 1 && settings put global animator_duration_scale
-    1
+  command: settings put global window_animation_scale 1 && settings put global transition_animation_scale
+    1 && settings put global animator_duration_scale 1
   description: Enable animations
   tags:
-    - ui
+  - ui
 bootloader:
   command: reboot bootloader
   description: Reboot to bootloader
   tags:
-    - flashing
+  - flashing
 clear:
   command: pm clear {args}
   description: Clear app data
   tags:
-    - app
+  - app
 clock-off:
   command: settings put secure clock_seconds 0
   description: Hide seconds in clock
   tags:
-    - time
+  - time
 clock-on:
   command: settings put secure clock_seconds 1
   description: Show seconds in clock
   tags:
-    - time
+  - time
 dark:
-  command: settings put secure ui_night_mode 2 && am broadcast -a
-    android.intent.action.CONFIGURATION_CHANGED
+  command: settings put secure ui_night_mode 2 && am broadcast -a android.intent.action.CONFIGURATION_CHANGED
   description: Enable dark mode
   tags:
-    - theme
+  - theme
 font-size:
   command: settings put system font_scale {args}
   description: Set font scale
   tags:
-    - accessibility
+  - accessibility
 force-stop:
   command: am force-stop {args}
   description: Force stop app
   tags:
-    - app
+  - app
 gear-drive:
   command: cmd car_service emulate-driving-state drive
   description: Emulate vehicle gear shift to DRIVE
   tags:
-    - automotive
-    - aaos
-    - emulation
+  - automotive
+  - aaos
+  - emulation
 gear-park:
   command: cmd car_service emulate-driving-state park
   description: Emulate vehicle gear shift to PARK
   tags:
-    - automotive
-    - aaos
-    - emulation
+  - automotive
+  - aaos
+  - emulation
 hvac-temp:
   command: cmd car_service set-property-value 358614275 1 {args}
-  description: "Set HVAC temperature for Driver (ID: 358614275, Zone: 1)"
+  description: 'Set HVAC temperature for Driver (ID: 358614275, Zone: 1)'
   tags:
-    - automotive
-    - aaos
-    - climate
+  - automotive
+  - aaos
+  - climate
 ip:
   command: ip addr show wlan0
   description: Show device IP
   tags:
-    - network
+  - network
 key-back:
   command: input keyevent 4
   description: Back button
   tags:
-    - input
+  - input
 key-home:
   command: input keyevent 3
   description: Home button
   tags:
-    - input
+  - input
 layout-off:
   command: setprop debug.layout false && service call activity 51
   description: Hide layout bounds
   tags:
-    - ui
+  - ui
 layout-on:
   command: setprop debug.layout true && service call activity 51
   description: Show layout bounds
   tags:
-    - debug
+  - debug
 light:
-  command: settings put secure ui_night_mode 1 && am broadcast -a
-    android.intent.action.CONFIGURATION_CHANGED
+  command: settings put secure ui_night_mode 1 && am broadcast -a android.intent.action.CONFIGURATION_CHANGED
   description: Enable light mode
   tags:
-    - theme
+  - theme
 link:
   command: am start -a android.intent.action.VIEW -d {args}
   description: Open deep link
   tags:
-    - intent
+  - intent
 log-clear:
   command: logcat -c
   description: Clear logcat
   tags:
-    - debug
+  - debug
 log-crash:
   command: logcat *:E
   description: Show only errors
   tags:
-    - debug
+  - debug
 no-anim:
-  command: settings put global window_animation_scale 0 && settings put global
-    transition_animation_scale 0 && settings put global animator_duration_scale
-    0
+  command: settings put global window_animation_scale 0 && settings put global transition_animation_scale
+    0 && settings put global animator_duration_scale 0
   description: Disable animations
   tags:
-    - speed
+  - speed
 pointer-off:
   command: settings put system pointer_location 0
   description: Hide touch coordinates
   tags:
-    - input
+  - input
 pointer-on:
   command: settings put system pointer_location 1
   description: Show touch coordinates
   tags:
-    - debug
+  - debug
 reboot:
   command: reboot
   description: Normal reboot
   tags:
-    - power
+  - power
 record:
   command: screenrecord /sdcard/v.mp4
-  description: Record screen and pull file locally (CTRL+C to stop)
+  description: Record screen (CTRL+C to stop) and pull file
   tags:
-    - video
-    - record
+  - video
+  - record
 remount:
   command: adb root && adb remount
   description: Root and remount system
   tags:
-    - root
+  - root
 screenshot:
   command: python3 {bin_dir}/capture_all.py
   description: Capture screenshots from all connected displays with activity naming
   tags:
-    - image
-    - capture
-    - multi-display
+  - image
+  - capture
+  - multi-display
 sleep-normal:
   command: settings put global stay_on_while_plugged_in 0
   description: Default sleep behavior
   tags:
-    - power
+  - power
 stay-awake:
   command: settings put global stay_on_while_plugged_in 3
   description: Keep screen on while charging
   tags:
-    - power
+  - power
 taps-off:
   command: settings put system show_touches 0
   description: Hide touch feedback
   tags:
-    - touches
+  - touches
 taps-on:
   command: settings put system show_touches 1
   description: Show touch feedback
   tags:
-    - touches
+  - touches
+teach:
+  command: python3 {bin_dir}/teach.py {args}
+  description: Teach the agent a new command by providing a name and example adb command
+  tags:
+  - meta
+  - extensible
+telecom-status:
+  command: python3 {bin_dir}/telecom_check.py
+  description: Check active calls and telecom metadata
+  tags:
+  - telecom
+  - phone
+  - status
 uninstall:
   command: pm uninstall {args}
   description: Uninstall app
   tags:
-    - app
+  - app
