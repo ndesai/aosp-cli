@@ -24,6 +24,13 @@ clock-on:
   description: Show seconds in clock
   tags:
   - time
+connectivity-status:
+  command: python3 {bin_dir}/conn_monitor.py
+  description: Track bluetooth and connectivity states
+  tags:
+  - network
+  - bluetooth
+  - status
 dark:
   command: settings put secure ui_night_mode 2 && am broadcast -a android.intent.action.CONFIGURATION_CHANGED
   description: Enable dark mode
